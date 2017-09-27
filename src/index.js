@@ -30,8 +30,6 @@
 
 //预加载
   var imgArr = [
-    // 'music/bg-music.mp3',
-    // 'music/btn-music1.mp3',
     'img/answer1-gif.gif',
     'img/answer1-gif-1.jpg',
     'img/bg-index.png',
