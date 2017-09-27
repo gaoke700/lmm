@@ -4,7 +4,7 @@ var gulpCssMin = require('gulp-cssmin');
 var gulpUglify = require('gulp-uglify');
 var del = require('del');
 var base64 = require('gulp-base64');
-var md5 = require("gulp-md5-plus");
+// var md5 = require("gulp-md5-plus");
 
 gulp.task('clean-dist', function (cb) {
     return del(['dist'], cb);
