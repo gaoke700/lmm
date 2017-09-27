@@ -56,7 +56,7 @@
     var oImg = new Image();
     oImg.onload = function(){
       oImg.onload = null;
-      loadingPro.style.width = Math.ceil(100*(++imageKey)/imgArrLength)+'%';
+      loadingPro.style.width = (Math.ceil(100*(++imageKey)/imgArrLength)-1)+'%';
       if (imageKey == imgArrLength) {
         document.querySelectorAll('.preload-bg').forEach(function (v) {
           v.style.backgroundImage = 'url('+v.dataset.preload_src+')';
@@ -65,19 +65,35 @@
           v.src = v.dataset.preload_src;
         });
 
-        loading.classList.add('none');
-        // pageIndex.classList.remove('none');
-        pageMessages.classList.remove('none');
+
+        var audio = new Audio();
+        audio.src = 'music/bg-music.mp3';
+        audio.preload = 'metadata';
+        audio.oncanplaythrough = function () {
+            loading.classList.add('none');
+            pageIndex.classList.remove('none');
+            audio.play();
+            audio.loop = true;
+            // document.addEventListener("WeixinJSBridgeReady", function () {//微信
+            //     audio.play();
+            // }, false);
+        };
+
       }
     };
     oImg.src = val;
   });
 
+  var btnAudio = new Audio('music/btn-music1.mp3');
+  btnAudio.preload = 'metadata';
+
   btnStart.onclick = function () {
+    btnAudio.play();
     pageIndex.classList.add('none');
     pageRule.classList.remove('none');
   };
   btnRule.onclick = function () {
+    btnAudio.play();
     pageRule.classList.add('none');
     pageQuestion1.classList.remove('none');
   };
@@ -86,6 +102,7 @@
 //问题一选答案并记录
   pageQuestion1.querySelectorAll('.answer1').forEach(function (val) {
     val.onclick =function () {
+        btnAudio.play();
       pageQuestion1.querySelectorAll('.answer1').forEach(function (v) {
         v.classList.remove('active');
       });
@@ -96,6 +113,7 @@
 
 //问题一点击按钮播放
   btnGifPlay.onclick = function () {
+      btnAudio.play();
     var _this = this;
     var src = btnGifImg.src;
     var dataSrc = btnGifImg.dataset.src;
@@ -111,6 +129,7 @@
   };
 
   btnQuestion1.onclick = function () {
+      btnAudio.play();
     if (answer1) {
       pageQuestion1.classList.add('none');
       pageQuestion2.classList.remove('none');
@@ -121,6 +140,7 @@
 //问题二选和尚
   pageQuestion2.querySelectorAll('.master-small img').forEach(function (val,key) {
     val.onclick =function () {
+        btnAudio.play();
       pageQuestion2.querySelectorAll('.bingqi img').forEach(function (v) {
         v.classList.remove('active');
       });
@@ -144,6 +164,7 @@
 //问题二选兵器
   pageQuestion2.querySelectorAll('.bingqi img').forEach(function (val,key) {
     val.onclick = function () {
+        btnAudio.play();
       pageQuestion2.querySelectorAll('.bingqi img').forEach(function (v) {
         v.classList.remove('active');
       });
@@ -154,6 +175,7 @@
   });
 
   btnQuestion2.onclick = function () {
+      btnAudio.play();
     if (answer2.as3 && answer2.as1 && answer2.as2) {
       if ((answer2.as1 === 1) && (answer2.as2  === 2) && (answer2.as3  === 4) && (answer1=='c')) {
         pageQuestion2.classList.add('none');
@@ -169,6 +191,7 @@
 
 //重新开始
   btnRestart.onclick = function () {
+      btnAudio.play();
     pageFail.classList.add('none');
     pageIndex.classList.remove('none');
 
@@ -191,6 +214,7 @@
 //抽奖
   var is_click = 1;
   btnZhizhen.onclick = function () {
+      btnAudio.play();
     if (!is_click) {
       return false;
     }
@@ -246,6 +270,7 @@
 
 //再来一次
   btnAgain.onclick = function () {
+      btnAudio.play();
     btnZhizhen.className = 'zhizhen';
     is_click = 1;
     pageAgain.classList.add('none');
@@ -253,6 +278,7 @@
   };
 
   btnMessages.onclick = function () {
+      btnAudio.play();
     var user_name = pageMessages.querySelector('input[name=user_name]').value;
     var user_address = pageMessages.querySelector('input[name=user_address]').value;
     var user_phone = pageMessages.querySelector('input[name=user_phone]').value;

@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 function audioAutoPlay(id){
     var audio = document.getElementById(id),
-        play = function(){
+    play = function(){
         audio.play();
         document.removeEventListener("touchstart",play, false);
     };
