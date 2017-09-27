@@ -54,7 +54,7 @@
     var oImg = new Image();
     oImg.onload = function(){
       oImg.onload = null;
-      loadingPro.style.width = (Math.ceil(100*(++imageKey)/imgArrLength)-1)+'%';
+      loadingPro.style.width = (Math.ceil(100*(++imageKey)/imgArrLength)-5)+'%';
       if (imageKey == imgArrLength) {
         document.querySelectorAll('.preload-bg').forEach(function (v) {
           v.style.backgroundImage = 'url('+v.dataset.preload_src+')';
@@ -68,6 +68,7 @@
         audio.src = 'music/bg-music.mp3';
         audio.preload = 'metadata';
         audio.oncanplaythrough = function () {
+            loadingPro.style.width = '100%';
             loading.classList.add('none');
             pageIndex.classList.remove('none');
             audio.play();
