@@ -53,12 +53,11 @@
   var imgArrLength = imgArr.length;
   var imageKey = 0;
 
-bgMusic.oncanplaythrough = function () {
   imgArr.forEach(function (val,key) {
     var oImg = new Image();
     oImg.onload = function(){
       oImg.onload = null;
-      loadingPro.style.width = (Math.ceil(100*(++imageKey)/imgArrLength)-5)+'%';
+      loadingPro.style.width = Math.ceil(100*(++imageKey)/imgArrLength)+'%';
       if (imageKey == imgArrLength) {
         document.querySelectorAll('.preload-bg').forEach(function (v) {
           v.style.backgroundImage = 'url('+v.dataset.preload_src+')';
@@ -76,7 +75,6 @@ bgMusic.oncanplaythrough = function () {
     };
     oImg.src = val;
   });
-};
 
   btnStart.onclick = function () {
     btnAudio.play();
