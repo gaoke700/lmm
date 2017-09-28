@@ -67,10 +67,9 @@
         });
         loading.classList.add('none');
         pageIndex.classList.remove('none');
-        bgMusic.play();
-        // document.addEventListener("WeixinJSBridgeReady", function () {//微信
-        //     audio.play();
-        // }, false);
+        document.addEventListener("WeixinJSBridgeReady", function () {//微信
+            bgMusic.play();
+        }, false);
       }
     };
     oImg.src = val;
