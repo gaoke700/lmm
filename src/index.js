@@ -8,6 +8,8 @@
   var pageAgain = document.getElementById('again');
   var pageMessages = document.getElementById('messages');
   var pageShare = document.getElementById('share');
+  var bgMusic = document.getElementById('bg-music');
+  var btnAudio = document.getElementById('btn-music');
 
   var btnStart = pageIndex.querySelector('.bottom-btn img');
   var btnRule = pageRule.querySelector('.bottom-btn img');
@@ -50,6 +52,8 @@
   var loadingPro = loading.querySelector('.top');
   var imgArrLength = imgArr.length;
   var imageKey = 0;
+
+bgMusic.oncanplaythrough = function () {
   imgArr.forEach(function (val,key) {
     var oImg = new Image();
     oImg.onload = function(){
@@ -62,29 +66,17 @@
         document.querySelectorAll('.preload-img').forEach(function (v) {
           v.src = v.dataset.preload_src;
         });
-
-
-        var audio = new Audio();
-        audio.src = 'music/bg-music.mp3';
-        audio.preload = 'metadata';
-        audio.oncanplaythrough = function () {
-            loadingPro.style.width = '100%';
-            loading.classList.add('none');
-            pageIndex.classList.remove('none');
-            audio.play();
-            audio.loop = true;
-            // document.addEventListener("WeixinJSBridgeReady", function () {//微信
-            //     audio.play();
-            // }, false);
-        };
-
+        loading.classList.add('none');
+        pageIndex.classList.remove('none');
+        bgMusic.play();
+        // document.addEventListener("WeixinJSBridgeReady", function () {//微信
+        //     audio.play();
+        // }, false);
       }
     };
     oImg.src = val;
   });
-
-  var btnAudio = new Audio('music/btn-music1.mp3');
-  btnAudio.preload = 'metadata';
+};
 
   btnStart.onclick = function () {
     btnAudio.play();
