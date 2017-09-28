@@ -2,10 +2,12 @@
 
 html,body{
   height: 100%;
+  width: 100%;
   //overflow: hidden;
 }
 
 .bg {
+  width: 100%;
   position: relative;
   height: 100%;
   background-repeat: no-repeat;
@@ -57,8 +59,42 @@ html,body{
 }
 
 #index {
+
+  .img-index {
+    width: 100%;
+  }
+
+  .sun {
+    position: absolute;
+    z-index: 4;
+    width: p2m(170);
+    top: p2m(44);
+    left: p2m(60);
+  }
+
+  .yun {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    top: p2m(180);
+    left: p2m(0);
+
+    &.yun2{
+      left: p2m(750);
+    }
+  }
+
+  .lanche-line {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: p2m(60);
+    z-index: 4;
+  }
+
   .lanche {
     position: absolute;
+    z-index: 5;
     width: p2m(200);
     top: 0;
     right: p2m(-200);
@@ -360,12 +396,12 @@ html,body{
   40% {
     width: p2m(90);
     right: p2m(240);
-    top: p2m(630);
+    top: p2m(635);
   }
   60% {
     width: p2m(40);
     right: p2m(424);
-    top: p2m(730);
+    top: p2m(735);
   }
   80% {
     width: p2m(20);
@@ -379,7 +415,6 @@ html,body{
   }
 
 }
-
 
 @keyframes youxiu1 {
   from {

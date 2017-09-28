@@ -11,6 +11,10 @@
   var bgMusic = document.getElementById('bg-music');
   var btnAudio = document.getElementById('btn-music');
 
+  var yun1 = pageIndex.querySelector('.yun1');
+  var yun2 = pageIndex.querySelector('.yun2');
+  var yun1Left = 0;
+  var yun2Left = parseInt(window.getComputedStyle(yun2).left);
   var btnStart = pageIndex.querySelector('.bottom-btn img');
   var btnRule = pageRule.querySelector('.bottom-btn img');
   var btnQuestion1 = pageQuestion1.querySelector('.bottom-btn img');
@@ -30,19 +34,27 @@
   var currentMaster = 1;
   var reward = '';
 
+  //云朵飘动
+  function yunduo() {
+    yun1Left++;
+    yun1.style.left = -yun1Left+'px';
+    yun2.style.left = (yun2Left-yun1Left)+'px';
+    if(yun1Left > yun2Left){
+      yun1Left = 0;
+    }
+    requestAnimationFrame(yunduo);
+  }
+
 //预加载
   var imgArr = [
     'img/answer1-gif.gif',
     'img/answer1-gif-1.jpg',
-    'img/bg-index.png',
+    'img/img-index.png',
     'img/bg-messages.png',
     'img/bg-question1.png',
     'img/bg-question2.png',
     'img/bg-rule.png',
     'img/bg-zhuanpan.png',
-    'img/master1-big.png',
-    'img/master2-big.png',
-    'img/master3-big.png',
     'img/1.jpg',
     'img/2.png',
     'img/3.jpg',
@@ -67,6 +79,7 @@
         });
         loading.classList.add('none');
         pageIndex.classList.remove('none');
+        requestAnimationFrame(yunduo);
         document.addEventListener("WeixinJSBridgeReady", function () {//微信
             bgMusic.play();
         }, false);
@@ -334,4 +347,11 @@
     }
   });
 
-
+//百度统计
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?8eecd872da69f5ac5dd7bb9bdf6349cd";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
