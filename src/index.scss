@@ -338,20 +338,24 @@ html,body{
     position: absolute;
     width: 100%;
     text-align: center;
-    top: p2m(270);
+    top: p2m(260);
     left: 0;
     img {
-      width: p2m(214);
-      height: p2m(214);
+      width: p2m(210);
+      height: p2m(210);
       border: p2m(5) solid white;
       border-radius: p2m(40);
-      margin-bottom: p2m(5);
+      margin-bottom: p2m(2);
     }
 
     p{
-      font-size: p2m(36);
+      font-size: p2m(30);
       color: #eb4e6e;
       font-weight: bold;
+      span {
+        display: block;
+        font-size: p2m(26);
+      }
     }
   }
 

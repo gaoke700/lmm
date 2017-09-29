@@ -72,14 +72,16 @@
       oImg.onload = null;
       loadingPro.style.width = Math.ceil(100*(++imageKey)/imgArrLength)+'%';
       if (imageKey == imgArrLength) {
-        document.querySelectorAll('.preload-bg').forEach(function (v) {
+        [].silce.call(document.querySelectorAll('.preload-bg')).forEach(function (v) {
           v.style.backgroundImage = 'url('+v.dataset.preload_src+')';
         });
-        document.querySelectorAll('.preload-img').forEach(function (v) {
+        [].silce.call(document.querySelectorAll('.preload-img')).forEach(function (v) {
           v.src = v.dataset.preload_src;
         });
         loading.classList.add('none');
         pageIndex.classList.remove('none');
+        // pageReward.classList.remove('none');
+        // pageMessages.classList.remove('none');
         requestAnimationFrame(yunduo);
         document.addEventListener("WeixinJSBridgeReady", function () {//微信
             bgMusic.play();
@@ -102,7 +104,7 @@
 
 
 //问题一选答案并记录
-  pageQuestion1.querySelectorAll('.answer1').forEach(function (val) {
+  [].silce.call(pageQuestion1.querySelectorAll('.answer1')).forEach(function (val) {
     val.onclick =function () {
         btnAudio.play();
       pageQuestion1.querySelectorAll('.answer1').forEach(function (v) {
@@ -234,22 +236,22 @@
       success: function(data){
         reward = data.date.yes || '5';
         if (reward == '1') {
-          var youxiu = (Math.random()>0.5)? 'youxiu1':'youxiu2';
-          _this.classList.add(youxiu);
-          jiangpinImg.src = 'img/1.jpg';
-          jiangpinName.innerHTML = '昂坪360 精美行李带';
-        } else if(reward == '2') {
           _this.classList.add('yideng');
-          jiangpinImg.src = 'img/2.png';
-          jiangpinName.innerHTML = '昂坪360 化妆品收纳袋';
-        } else if(reward == '3') {
+          jiangpinImg.src = 'img/1.jpg';
+          jiangpinName.innerHTML = '昂坪360 精美行李带<span>（价值HK$120）</span>';
+        } else if(reward == '2') {
           var erdeng = (Math.random()>0.5)? 'erdeng1':'erdeng2';
           _this.classList.add(erdeng);
-          jiangpinImg.src = 'img/3.jpg';
-          jiangpinName.innerHTML = '昂坪360 缆车小钱包';
-        } else if(reward == '4') {
+          jiangpinImg.src = 'img/2.png';
+          jiangpinName.innerHTML = '昂坪360 化妆品收纳袋<span>（价值HK$120）</span>';
+        } else if(reward == '3') {
           var sandeng = (Math.random()>0.5)? 'sandeng1':'sandeng2';
           _this.classList.add(sandeng);
+          jiangpinImg.src = 'img/3.jpg';
+          jiangpinName.innerHTML = '昂坪360 缆车小钱包<span>（价值HK$130）</span>';
+        } else if(reward == '4') {
+          var youxiu = (Math.random()>0.5)? 'youxiu1':'youxiu2';
+          _this.classList.add(youxiu);
           jiangpinImg.src = 'img/4.jpg';
           jiangpinName.innerHTML = '驴妈妈 小驴公仔';
         } else {
@@ -348,11 +350,4 @@
     }
   });
 
-//百度统计
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?8eecd872da69f5ac5dd7bb9bdf6349cd";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
+
