@@ -188,9 +188,9 @@
         pageFail.classList.remove('none');
       }
     }
-    // else {
-    //   alert ('请匹配所有兵器');
-    // }
+    else {
+      alert ('注意！三位大师都要匹配相应兵器哦~');
+    }
   };
 
 //重新开始
@@ -330,7 +330,7 @@
           title: '昂坪360放大招，你接还是不接？',
           desc: '不接不合适吧！',
           link: 'http://lmm.itbuluo.top/angping',
-          imgUrl: 'img/wxicon.jpg',
+          imgUrl: 'http://lmm.itbuluo.top/angping/img/wxicon.jpg',
           type: 'link',
           success: function () {},
           cancel: function () {}
@@ -339,7 +339,7 @@
         window.wxDataTiemline = {//分享到朋友圈
           title: '昂坪360放大招，你接还是不接？',
           link: 'http://lmm.itbuluo.top/angping',
-          imgUrl: 'img/wxicon.jpg',
+          imgUrl: 'http://lmm.itbuluo.top/angping/img/wxicon.jpg',
           type: 'link',
           success: function () {},
           cancel: function () {}
