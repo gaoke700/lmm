@@ -340,6 +340,7 @@
           title: '昂坪360放大招，你接还是不接？',
           desc: '不接不合适吧！',
           link: 'http://lmm.itbuluo.top/angping',
+            //android will not appearance if imgUrl is not absolute path
           imgUrl: 'http://lmm.itbuluo.top/angping/img/wxicon.jpg',
           type: 'link',
           success: function () {},
