@@ -72,10 +72,10 @@
       oImg.onload = null;
       loadingPro.style.width = Math.ceil(100*(++imageKey)/imgArrLength)+'%';
       if (imageKey == imgArrLength) {
-        [].silce.call(document.querySelectorAll('.preload-bg')).forEach(function (v) {
+        $('.preload-bg').each(function (i,v) {
           v.style.backgroundImage = 'url('+v.dataset.preload_src+')';
         });
-        [].silce.call(document.querySelectorAll('.preload-img')).forEach(function (v) {
+        $('.preload-img').each(function (i,v) {
           v.src = v.dataset.preload_src;
         });
         loading.classList.add('none');
@@ -104,10 +104,10 @@
 
 
 //问题一选答案并记录
-  [].silce.call(pageQuestion1.querySelectorAll('.answer1')).forEach(function (val) {
+  $('#question1 .answer1').each(function (i,val) {
     val.onclick =function () {
         btnAudio.play();
-      pageQuestion1.querySelectorAll('.answer1').forEach(function (v) {
+      $('#question1 .answer1').each(function (i,v) {
         v.classList.remove('active');
       });
       val.classList.add('active');
@@ -142,21 +142,21 @@
   };
 
 //问题二选和尚
-  pageQuestion2.querySelectorAll('.master-small img').forEach(function (val,key) {
+  $('.master-small img').each(function (key,val) {
     val.onclick =function () {
         btnAudio.play();
-      pageQuestion2.querySelectorAll('.bingqi img').forEach(function (v) {
+      $('.bingqi img').each(function (i,v) {
         v.classList.remove('active');
       });
       if (answer2['as'+(key+1)]) {
         pageQuestion2.querySelectorAll('.bingqi img')[answer2['as'+(key+1)]-1].classList.add('active');
       }
-      pageQuestion2.querySelectorAll('.master-small img').forEach(function (v) {
+      $('.master-small img').each(function (i,v) {
         v.classList.remove('active');
       });
       val.classList.add('active');
 
-      pageQuestion2.querySelectorAll('.master-big').forEach(function (v) {
+      $('.master-big').each(function (i,v) {
         v.classList.add('none');
       });
       pageQuestion2.querySelectorAll('.master-big')[key].classList.remove('none');
@@ -166,7 +166,7 @@
   });
 
 //问题二选兵器
-  pageQuestion2.querySelectorAll('.bingqi img').forEach(function (val,key) {
+  $('.bingqi img').each(function (key,val) {
     val.onclick = function () {
         btnAudio.play();
       pageQuestion2.querySelectorAll('.bingqi img').forEach(function (v) {
