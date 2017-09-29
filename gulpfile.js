@@ -5,9 +5,9 @@ var gulpUglify = require('gulp-uglify');
 var del = require('del');
 var base64 = require('gulp-base64');
 // var md5 = require("gulp-md5-plus");
-
+var outputPath = 'angping';
 gulp.task('clean-dist', function (cb) {
-    return del(['dist'], cb);
+    return del(outputPath, cb);
 });
 gulp.task('clean-md5', function (cb) {
     return del(['md5'], cb);
@@ -18,15 +18,15 @@ gulp.task('clean-md5', function (cb) {
 gulp.task('min-js', function() {
     return gulp.src(['src/**/*.js'])
       .pipe(gulpUglify())
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest(outputPath));
 });
 gulp.task('transfer-html', function() {
     return gulp.src(['src/**/*.html'])
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest(outputPath));
 });
 gulp.task('transfer-music', function() {
     return gulp.src(['src/music/**/*.**'])
-      .pipe(gulp.dest('dist/music'));
+      .pipe(gulp.dest(outputPath+'/music'));
 });
 gulp.task('min-css', function() {
     return gulp.src(['src/**/*.scss'])
@@ -35,20 +35,20 @@ gulp.task('min-css', function() {
       .pipe(base64({
         maxImageSize: 20*1024
       }))
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest(outputPath));
 });
 gulp.task('dev-img', function() {
     return gulp.src(['src/img/**/*.{jpg,png,jpeg,gif,svg}'])
-      .pipe(gulp.dest('dist/img'));
+      .pipe(gulp.dest(outputPath+'/img'));
 });
 gulp.task('dev-js', function() {
     return gulp.src(['src/**/*.js'])
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest(outputPath));
 });
 gulp.task('dev-css', function() {
     return gulp.src(['src/**/*.scss'])
       .pipe(gulpScss())
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest(outputPath));
 });
 
 gulp.task('md5-css' ,function() {
@@ -74,7 +74,7 @@ gulp.task('dev', ['clean-dist'], function(){
 
 //上线命令 gulp build
 gulp.task('build', ['clean-dist'], function(){
-    gulp.start('dev-img', 'min-js', 'min-css','transfer-html','transfer-music');
+    gulp.start('dev-img', 'min-js', 'min-css','transfer-html','transfer-music')
 });
 
 gulp.task('md5', ['clean-md5'], function(){
