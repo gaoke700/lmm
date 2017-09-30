@@ -177,15 +177,14 @@
 
 //问题二选兵器
   $('.bingqi img').each(function (key,val) {
-    val.onclick = function () {
-        btnAudio.play();
-      pageQuestion2.querySelectorAll('.bingqi img').forEach(function (v) {
-        v.classList.remove('active');
+    $(val).on('click',function () {
+      btnAudio.play();
+      $('.bingqi img').each(function (i,v) {
+        $(v).removeClass('active');
       });
-      val.classList.add('active');
-
+      $(this).addClass('active');
       answer2['as'+currentMaster] = key+1;
-    }
+    });
   });
 
   btnQuestion2.onclick = function () {
