@@ -93,6 +93,7 @@
         // pageReward.classList.remove('none');
         // pageMessages.classList.remove('none');
         requestAnimationFrame(yunduo);
+        bgMusic.play();
         document.addEventListener("WeixinJSBridgeReady", function () {//微信
             bgMusic.play();
         }, false);
@@ -227,10 +228,10 @@
 //抽奖
   var is_click = 1;
   btnZhizhen.onclick = function () {
-      btnAudio.play();
     if (!is_click) {
       return false;
     }
+    btnAudio.play();
     var _this = this;
     var zhongjiang = 1;
     is_click = 0;
@@ -264,7 +265,14 @@
           jiangpinImg.src = 'img/4.jpg';
           jiangpinName.innerHTML = '驴妈妈 小驴公仔';
         } else {
-          var xiexie = (Math.random()>0.5)? 'xiexie1':'xiexie2';
+          var xiexie = Math.random();
+          if (xiexie < 0.3) {
+            xiexie = 'xiexie1';
+          } else if (xiexie < 0.7) {
+            xiexie = 'xiexie2';
+          } else {
+            xiexie = 'xiexie3';
+          }
           _this.classList.add(xiexie);
           zhongjiang = 0
         }
