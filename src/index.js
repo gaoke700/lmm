@@ -309,6 +309,7 @@
         dataType: 'json',
         success: function(data){
           if (data.date = 'yes') {
+            alert('提交成功');
             pageShare.classList.remove('none');
           }
         }
