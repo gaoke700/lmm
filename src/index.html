@@ -27,7 +27,7 @@
       var open_id = getUrlObj().openid;
       var ua = window.navigator.userAgent.toLowerCase();
       //获取open_id
-      if(!open_id && (ua.match(/MicroMessenger/i) === 'micromessenger')){
+      if(!open_id && (ua.match(/MicroMessenger/i) == 'micromessenger')){
         window.location.href = 'https://wx.ouu.me/?pid=angping360';
       }
     </script>
