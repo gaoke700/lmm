@@ -3,9 +3,10 @@ var gulpScss = require('gulp-sass');
 var gulpCssMin = require('gulp-cssmin');
 var gulpUglify = require('gulp-uglify');
 var del = require('del');
-var base64 = require('gulp-base64');
-// var md5 = require("gulp-md5-plus");
+// var base64 = require('gulp-base64');
+var md5 = require("gulp-md5-plus");
 var outputPath = 'angping';
+
 gulp.task('clean-dist', function (cb) {
     return del(outputPath, cb);
 });
@@ -32,9 +33,6 @@ gulp.task('min-css', function() {
     return gulp.src(['src/**/*.scss'])
       .pipe(gulpScss())
       .pipe(gulpCssMin())
-      .pipe(base64({
-        maxImageSize: 20*1024
-      }))
       .pipe(gulp.dest(outputPath));
 });
 gulp.task('dev-img', function() {
@@ -54,15 +52,23 @@ gulp.task('dev-css', function() {
 gulp.task('md5-css' ,function() {
   return gulp.src('src/**/*.scss')
     .pipe(gulpScss())
-    .pipe(md5(10 ,'src/**/*.html'))
+    .pipe(md5(10 ,'src/**/*.html',{mappingFile: 'manifest.json'}))
     .pipe(gulp.dest('md5'));
 });
 gulp.task('md5-js' ,function() {
   return gulp.src('src/**/*.js')
-    .pipe(md5(10 ,'src/**/*.html'))
+    .pipe(md5(10 ,'src/**/*.html',{mappingFile: 'manifest.json'}))
     .pipe(gulp.dest('md5'));
 });
-
+gulp.task('md5-img' , ['md5-css'],function() {
+  gulp.src('src/img/**/*.{jpg,png,jpeg,gif,svg}')
+    .pipe(md5(10 ,outputPath+'/css/*.css',{
+      dirLevel : 1,
+      mappingFile: 'manifest.json',
+      connector: '.'
+    }))
+    .pipe(gulp.dest(outputPath+'/img/'));
+});
 
 gulp.task('watch', function(){
     gulp.watch(['src/**/*.**'], ['dev-img','dev-css','transfer-html','dev-js','transfer-music']);
