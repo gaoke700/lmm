@@ -2,9 +2,18 @@ var gulp = require('gulp');
 var gulpScss = require('gulp-sass');
 var gulpCssMin = require('gulp-cssmin');
 var gulpUglify = require('gulp-uglify');
-var del = require('del');
+// var gulpBabel = require('gulp-babel');
+var gulpImagemin = require('gulp-imagemin');
+var gulpRev = require('gulp-rev');
+var gulpRevCollector = require('gulp-rev-collector');
 // var base64 = require('gulp-base64');
-var md5 = require("gulp-md5-plus");
+// var eslint = require('gulp-eslint');
+// var stylelint = require('gulp-stylelint');
+
+var del = require('del');
+
+
+
 var outputPath = 'angping';
 
 gulp.task('clean-dist', function (cb) {
@@ -27,7 +36,7 @@ gulp.task('transfer-html', function() {
 });
 gulp.task('transfer-music', function() {
     return gulp.src(['src/music/**/*.**'])
-      .pipe(gulp.dest(outputPath+'/music'));
+      .pipe(gulp.dest('md5/music'));
 });
 gulp.task('min-css', function() {
     return gulp.src(['src/**/*.scss'])
@@ -35,40 +44,34 @@ gulp.task('min-css', function() {
       .pipe(gulpCssMin())
       .pipe(gulp.dest(outputPath));
 });
+
 gulp.task('dev-img', function() {
     return gulp.src(['src/img/**/*.{jpg,png,jpeg,gif,svg}'])
-      .pipe(gulp.dest(outputPath+'/img'));
+      .pipe(gulp.dest('md5/img'));
 });
 gulp.task('dev-js', function() {
     return gulp.src(['src/**/*.js'])
-      .pipe(gulp.dest(outputPath));
+      .pipe(gulp.dest('md5'));
 });
 gulp.task('dev-css', function() {
     return gulp.src(['src/**/*.scss'])
       .pipe(gulpScss())
-      .pipe(gulp.dest(outputPath));
+      .pipe(gulp.dest('md5'));
 });
 
-gulp.task('md5-css' ,function() {
-  return gulp.src('src/**/*.scss')
-    .pipe(gulpScss())
-    .pipe(md5(10 ,'src/**/*.html',{mappingFile: 'manifest.json'}))
-    .pipe(gulp.dest('md5'));
+gulp.task('rev',['clean-md5'],function() {
+  return gulp.src(['src/**/*.**','!src/**/*.html','!src/**/*.json'])
+    .pipe(gulpRev())
+    .pipe(gulp.dest('md5'))
+    .pipe(gulpRev.manifest())        //- 生成一个rev-manifest.json
+    .pipe(gulp.dest('view'));
 });
-gulp.task('md5-js' ,function() {
-  return gulp.src('src/**/*.js')
-    .pipe(md5(10 ,'src/**/*.html',{mappingFile: 'manifest.json'}))
-    .pipe(gulp.dest('md5'));
+gulp.task('rev-collector',['rev'],function() {
+  return gulp.src(['view/rev-manifest.json','src/**/*.html'])
+    .pipe(gulpRevCollector())
+    .pipe(gulp.dest('view'));
 });
-gulp.task('md5-img' , ['md5-css'],function() {
-  gulp.src('src/img/**/*.{jpg,png,jpeg,gif,svg}')
-    .pipe(md5(10 ,outputPath+'/css/*.css',{
-      dirLevel : 1,
-      mappingFile: 'manifest.json',
-      connector: '.'
-    }))
-    .pipe(gulp.dest(outputPath+'/img/'));
-});
+
 
 gulp.task('watch', function(){
     gulp.watch(['src/**/*.**'], ['dev-img','dev-css','transfer-html','dev-js','transfer-music']);
@@ -83,7 +86,7 @@ gulp.task('build', ['clean-dist'], function(){
     gulp.start('dev-img', 'min-js', 'min-css','transfer-html','transfer-music')
 });
 
-gulp.task('md5', ['clean-md5'], function(){
-    gulp.start('md5-css');
+gulp.task('md5', function(){
+    gulp.start('rev-collector');
 });
 

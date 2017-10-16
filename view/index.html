@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>昂坪360放大招，你接还是不接？</title>
+    <script>
+      var parseUrl = function (str) {
+        var arr, part, url = {};
+        if (!(str || '').replace(/^\s+|\s+$/, '')) {
+          return {};
+        }
+        str = str.substring(1, str.length);
+        if (str) {
+          arr = str.split('&');
+          for (var i = 0; i < arr.length; i++) {
+            part = arr[i].split('=');
+            url[part[0]] = part[1];
+          }
+        }
+        return url;
+      };
+
+      var getUrlObj = function () {
+        return parseUrl(location.search || location.hash);
+      };
+
+      var open_id = getUrlObj().openid;
+      var ua = window.navigator.userAgent.toLowerCase();
+      //获取open_id
+      if(!open_id && (ua.match(/MicroMessenger/i) == 'micromessenger')){
+        window.location.href = 'https://wx.ouu.me/?pid=angping360';
+      }
+    </script>
+    <script>
+      (function(win) {
+        var doc = win.document;
+        var docEl = doc.documentElement;
+        var metaEl = doc.querySelector('meta[name="viewport"]');
+        var dpr = 0;
+        var scale = 0;
+
+        if (!dpr && !scale) {
+          var isAndroid = win.navigator.appVersion.match(/android/gi);
+          var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+
+          var devicePixelRatio = win.devicePixelRatio;
+
+          if (isIPhone) {
+            // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+              dpr = 3;
+            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
+              dpr = 2;
+            } else {
+              dpr = 1;
+            }
+            docEl.classList.add('ios');
+          } else {
+            // 其他设备下，仍旧使用1倍的方案
+            dpr = 1;
+          }
+          scale = 1 / dpr;
+
+          if (isAndroid){
+            docEl.classList.add('android');
+          }
+        }
+
+        docEl.setAttribute('data-dpr', dpr);
+        if (!metaEl) {
+          metaEl = doc.createElement('meta');
+          metaEl.setAttribute('name', 'viewport');
+          metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+          if (docEl.firstElementChild) {
+            docEl.firstElementChild.appendChild(metaEl);
+          } else {
+            var wrap = doc.createElement('div');
+            wrap.appendChild(metaEl);
+            doc.write(wrap.innerHTML);
+          }
+        }
+
+        function refreshRem(){
+          var width = docEl.getBoundingClientRect().width;
+          if (width / dpr > 540) {
+            width = 540 * dpr;
+          }
+          var rem = width / 10;
+          docEl.style.fontSize = rem + 'px';
+        }
+        refreshRem()
+
+      })(window);
+    </script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="loading" >
+        <div class="bottom">
+            <div class="top"></div>
+        </div>
+    </div>
+    <audio id="bg-music" src="music/bg-music-2a671b308a.mp3" preload="auto" loop ></audio>
+    <audio id="btn-music" src="music/btn-music1-77a5ed9450.mp3" preload="auto" ></audio>
+    <div id="index" class="bg none">
+        <img class="img-index preload-img" data-preload_src="img/img-index-bd49080eb3.png" />
+        <img class="yun yun1" src="img/bg-yun-70b5eb0109.png" />
+        <img class="yun yun2" src="img/bg-yun-70b5eb0109.png" />
+        <img class="sun" src="" />
+        <img class="lanche-line" src="img/lanche-line-35d8abce06.png" />
+        <img class="lanche lanche1" src="img/lanche-976d0b0975.png" />
+        <img class="lanche lanche2" src="img/lanche-976d0b0975.png" />
+        <img class="lanche lanche3" src="img/lanche-976d0b0975.png" />
+        <div class="bottom-btn">
+            <img src="img/btn-start-fa2cffa06f.png" />
+        </div>
+    </div>
+    <div id="rule" class="bg none preload-bg" data-preload_src="img/bg-rule-9871118c67.png">
+        <div class="bottom-btn">
+            <img src="img/btn-next-4d1203d96c.png" />
+        </div>
+    </div>
+    <div id="question1" class="bg none preload-bg" data-preload_src="img/bg-question1-8dfc12be75.png">
+        <div class="question1-answer">
+            <span class="answer1" data-value="a">A.7架缆车</span>
+            <span class="answer1" data-value="b">B.8架缆车</span>
+            <br />
+            <span class="answer1" data-value="c">C.6架缆车</span>
+            <span class="answer1" data-value="d">D.全是缆车</span>
+        </div>
+        <div class="question1-imgs">
+            <img class="btn-play" src="img/btn-play-6094d76c0b.png" />
+            <img class="gif-img preload-img" data-preload_src="img/answer1-gif-1-9256e3b63c.jpg" data-src="img/answer1-gif-5255040fef.gif" />
+        </div>
+        <div class="bottom-btn">
+            <img src="img/btn-next-4d1203d96c.png" />
+        </div>
+    </div>
+    <div id="question2" class="bg none preload-bg" data-preload_src="img/bg-question2-d624101ebd.png">
+        <div class="master">
+            <div class="master-small">
+                <img src="img/master1-9300233817.png" class="active"/>
+                <img src="img/master2-e323f4b164.png" />
+                <img src="img/master3-fefc877e8b.png" />
+            </div>
+            <img class="master-big master1-big" src="img/master1-big-770f050f6d.png" />
+            <img class="master-big master2-big none" src="img/master2-big-4569516035.png" />
+            <img class="master-big master3-big none" src="img/master3-big-70ea2424ee.png" />
+            <div class="bingqi">
+                <img src="img/bingqi1-3a7e7deff6.jpg" />
+                <img src="img/bingqi2-384dc2c029.jpg" />
+                <img src="img/bingqi3-0585a77ac0.jpg" />
+                <img src="img/bingqi4-aff2f31fb7.jpg" />
+                <img src="img/bingqi5-429bc26066.jpg" />
+            </div>
+        </div>
+
+        <div class="bottom-btn">
+            <img src="img/btn-next-4d1203d96c.png" />
+        </div>
+    </div>
+    <div id="fail" class="none fixed-bg">
+        <div class="fail-msg">
+            <img src="img/fail-80691a4752.png" />
+            <p>遗憾~<br />您未能挑战成功<br />再接再厉吧~</p>
+        </div>
+        <div class="bottom-btn">
+            <img src="img/btn-restart-8ae94334e8.png" />
+        </div>
+    </div>
+    <div id="reward" class="bg none preload-bg" data-preload_src="img/bg-zhuanpan-ac1baa5771.png">
+        <img class="zhizhen" src="img/zhizhen-bf947bea2a.png" />
+        <div class="bottom-btn">
+            <a href="https://m.lvmama.com/ticket/piao-232993?losc=082897">
+                <img src="img/btn-action-808ee3011f.png" />
+            </a>
+        </div>
+    </div>
+    <div id="again" class="none fixed-bg">
+        <div class="again-msg">
+            <img src="img/again-f73402aa64.png" />
+            <p>啊偶，<br />离礼物还有一点点距离……</p>
+        </div>
+        <div class="bottom-btn">
+            <img src="img/btn-again-994c0684f8.png" />
+        </div>
+    </div>
+    <div id="messages" class="bg none">
+        <img data-preload_src="img/bg-messages-a5c999c0e1.png" class="bg-img preload-img">
+        <div class="jiangpin">
+            <img src="" />
+            <p>奖品名称</p>
+        </div>
+        <div class="inputs">
+            <input type="text" name="user_name">
+            <input type="text" name="user_address">
+            <input type="number" name="user_phone">
+        </div>
+        <div class="bottom-btn">
+            <img src="img/btn-sure-c6171d9788.png" />
+        </div>
+    </div>
+    <div id="share" class="none fixed-bg">
+        <img src="img/share-c37a184de8.png" />
+    </div>
+    <script>
+      //百度统计
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?8eecd872da69f5ac5dd7bb9bdf6349cd";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+</body>
+<script src="zepto-50a4556b00.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="index-710c5778e6.js"></script>
+</html>

@@ -1,0 +1,500 @@
+@import "reset";
+
+html,body{
+  height: 100%;
+}
+
+.bg {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.fixed-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.8);
+}
+
+.bottom-btn {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  left: 0;
+  top: p2m(1000);
+  img {
+    width: p2m(330);
+  }
+}
+
+.loading {
+  height: 100%;
+
+  .bottom {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    width: 60%;
+    height: p2m(20);
+    border-radius: p2m(200);
+    background: #11d3b2;
+
+    .top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      border-radius: p2m(200);
+      background: #eb3d60;
+    }
+  }
+}
+
+#index {
+
+  .img-index {
+    width: 100%;
+  }
+
+  .sun {
+    position: absolute;
+    z-index: 4;
+    width: p2m(170);
+    top: p2m(44);
+    left: p2m(60);
+  }
+
+  .yun {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    top: p2m(180);
+    left: p2m(0);
+
+    &.yun2{
+      left: p2m(750);
+    }
+  }
+
+  .lanche-line {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: p2m(60);
+    z-index: 4;
+  }
+
+  .lanche {
+    position: absolute;
+    z-index: 5;
+    width: p2m(200);
+    top: 0;
+    right: p2m(-200);
+    animation: lanche 10s linear infinite;
+
+    &.lanche2 {
+      animation-delay:3s;
+    }
+    &.lanche3 {
+      animation-delay:6s;
+    }
+
+  }
+}
+
+#question1 {
+  .question1-answer {
+    width: 100%;
+    text-align: center;
+    font-size: 0;
+    position: absolute;
+    left: 0;
+    top: p2m(360);
+    .answer1 {
+      display: inline-block;
+      margin-bottom: p2m(20);
+      border-radius: p2m(5);
+      border-bottom: p2m(6) solid white;
+      width: p2m(220);
+      height: p2m(60);
+      line-height: p2m(60);
+      font-size: p2m(36);
+      color: white;
+      background: #11d3b2;
+
+      &.active {
+        border-color: #eb3d60;
+      }
+
+      &:nth-of-type(2n-1){
+        margin-right: p2m(30);
+      }
+    }
+  }
+
+  .question1-imgs {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: p2m(550);
+    text-align: center;
+    border-radius: p2m(10);
+
+    .btn-play {
+      position: absolute;
+      width: p2m(100);
+      height: p2m(100);
+      top: 50%;
+      left: 50%;
+      margin-left: p2m(-50);
+      margin-top: p2m(-50);
+    }
+
+    img{
+      border-radius: p2m(10);
+      width: p2m(460);
+      height: p2m(310);
+    }
+  }
+}
+
+#question2 {
+  .master {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: p2m(354);
+
+    .master-small {
+      text-align: center;
+
+      img {
+        width: p2m(145);
+        border: p2m(5) solid white;
+        border-radius: 66%;
+        margin-right: p2m(45);
+
+        &:last-of-type{
+          margin-right: 0;
+        }
+
+        &.active {
+          border-color: #eb3d60;
+        }
+      }
+    }
+
+    .master-big {
+      position: absolute;
+
+      &.master1-big {
+        width: p2m(220);
+        left: p2m(140);
+        top: p2m(160);
+      }
+
+      &.master2-big {
+        width: p2m(188);
+        left: p2m(130);
+        top: p2m(210);
+      }
+
+      &.master3-big {
+        width: p2m(200);
+        left: p2m(136);
+        top: p2m(206);
+      }
+    }
+
+    .bingqi {
+      position: absolute;
+      top: p2m(190);
+      right: p2m(70);
+
+      img {
+        display: block;
+        width: p2m(260);
+        border: p2m(5) solid white;
+        margin-bottom: p2m(5);
+
+        &.active {
+          border-color: #eb3d60;
+        }
+      }
+    }
+
+  }
+}
+
+#fail {
+  .fail-msg {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    top: p2m(330);
+
+    img {
+      width: p2m(430);
+    }
+
+    p{
+      text-align: center;
+      font-size: p2m(44);
+      color: white;
+    }
+  }
+
+  .bottom-btn {
+    top: p2m(712);
+  }
+}
+
+#reward {
+  .zhizhen {
+    position: absolute;
+    width: p2m(124);
+    top: p2m(510);
+    left: p2m(324);
+    transform-origin: 50% 62.5%;
+    //animation-fill-mode : none | forwards | backwards | both;
+    &.youxiu1 {
+      animation: youxiu1 5s ease forwards;
+    }
+    &.youxiu2 {
+      animation: youxiu2 5s ease forwards;
+    }
+    &.yideng {
+      animation: yideng 5s ease forwards;
+    }
+    &.erdeng1 {
+      animation: erdeng1 5s ease forwards;
+    }
+    &.erdeng2 {
+      animation: erdeng2 5s ease forwards;
+    }
+    &.sandeng1 {
+      animation: sandeng1 5s ease forwards;
+    }
+    &.sandeng2 {
+      animation: sandeng2 5s ease forwards;
+    }
+    &.sandeng3 {
+      animation: sandeng3 5s ease forwards;
+    }
+    &.xiexie1 {
+      animation: xiexie1 5s ease forwards;
+    }
+    &.xiexie2 {
+      animation: xiexie2 5s ease forwards;
+    }
+    &.xiexie3 {
+      animation: xiexie3 5s ease forwards;
+    }
+  }
+
+  a {
+    display: inline-block;
+  }
+}
+
+#again {
+  .again-msg {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    top: p2m(256);
+
+    img {
+      width: p2m(180);
+    }
+
+    p{
+      text-align: center;
+      font-size: p2m(44);
+      color: white;
+    }
+  }
+  .bottom-btn {
+    top: p2m(712);
+  }
+}
+
+#messages {
+  width: 100%;
+
+  .bg-img {
+    width: 100%;
+  }
+
+  .jiangpin {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: p2m(260);
+    left: 0;
+    img {
+      width: p2m(210);
+      height: p2m(210);
+      border: p2m(5) solid white;
+      border-radius: p2m(40);
+      margin-bottom: p2m(2);
+    }
+
+    p{
+      font-size: p2m(30);
+      color: #eb4e6e;
+      font-weight: bold;
+      span {
+        display: block;
+        font-size: p2m(26);
+      }
+    }
+  }
+
+  .inputs{
+    position: absolute;
+    top: p2m(692);
+    left: p2m(242);
+    padding-top: p2m(5);
+
+    input {
+      background: inherit;
+      font-size: p2m(40);
+      border: none;
+      width: p2m(400);
+      height: p2m(70);
+      margin-bottom: p2m(26);
+    }
+  }
+}
+#share {
+  img {
+    position: absolute;
+    width: p2m(150);
+    top: p2m(60);
+    right: p2m(60);
+  }
+}
+
+@keyframes lanche {
+  0% {
+    width: p2m(200);
+    right: p2m(-200);
+    top: 0;
+  }
+  20% {
+    width: p2m(185);
+    right: p2m(10);
+    top: p2m(360);
+  }
+  40% {
+    width: p2m(90);
+    right: p2m(240);
+    top: p2m(635);
+  }
+  60% {
+    width: p2m(40);
+    right: p2m(424);
+    top: p2m(735);
+  }
+  80% {
+    width: p2m(20);
+    right: p2m(500);
+    top: p2m(740);
+  }
+  100% {
+    width: p2m(5);
+    right: p2m(540);
+    top: p2m(730);
+  }
+
+}
+
+@keyframes youxiu1 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1810deg);
+  }
+}
+@keyframes youxiu2 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1970deg);
+  }
+}
+@keyframes yideng {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1840deg);
+  }
+}
+@keyframes erdeng1 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1950deg);
+  }
+}
+@keyframes erdeng2 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(2050deg);
+  }
+}
+@keyframes sandeng1 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1870deg);
+  }
+}
+@keyframes sandeng2 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1730deg);
+  }
+}
+@keyframes xiexie1 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1910deg);
+  }
+}
+@keyframes xiexie2 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(2020deg);
+  }
+}
+@keyframes xiexie3 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1760deg);
+  }
+}
