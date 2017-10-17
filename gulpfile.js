@@ -6,6 +6,7 @@ var gulpUglify = require('gulp-uglify');
 var gulpImagemin = require('gulp-imagemin');
 var gulpRev = require('gulp-rev');
 var gulpRevCollector = require('gulp-rev-collector');
+var gulpInlineSource = require('gulp-inline-source');
 // var base64 = require('gulp-base64');
 // var eslint = require('gulp-eslint');
 // var stylelint = require('gulp-stylelint');
@@ -19,8 +20,8 @@ var outputPath = 'angping';
 gulp.task('clean-dist', function (cb) {
     return del(outputPath, cb);
 });
-gulp.task('clean-md5', function (cb) {
-    return del(['md5'], cb);
+gulp.task('clean-assets', function (cb) {
+    return del(['assets'], cb);
 });
 
 
@@ -36,39 +37,44 @@ gulp.task('transfer-html', function() {
 });
 gulp.task('transfer-music', function() {
     return gulp.src(['src/music/**/*.**'])
-      .pipe(gulp.dest('md5/music'));
+      .pipe(gulp.dest('assets/music'));
 });
 gulp.task('min-css', function() {
     return gulp.src(['src/**/*.scss'])
       .pipe(gulpScss())
       .pipe(gulpCssMin())
-      .pipe(gulp.dest(outputPath));
+      .pipe(gulp.dest('assets'));
 });
 
 gulp.task('dev-img', function() {
     return gulp.src(['src/img/**/*.{jpg,png,jpeg,gif,svg}'])
-      .pipe(gulp.dest('md5/img'));
+      .pipe(gulp.dest('assets/img'));
 });
 gulp.task('dev-js', function() {
     return gulp.src(['src/**/*.js'])
-      .pipe(gulp.dest('md5'));
+      .pipe(gulp.dest('assets'));
 });
 gulp.task('dev-css', function() {
     return gulp.src(['src/**/*.scss'])
       .pipe(gulpScss())
-      .pipe(gulp.dest('md5'));
+      .pipe(gulp.dest('assets'));
 });
 
-gulp.task('rev',['clean-md5'],function() {
-  return gulp.src(['src/**/*.**','!src/**/*.html','!src/**/*.json'])
+gulp.task('rev',['clean-assets'],function() {
+  return gulp.src(['assets/**/*.**','!assets/**/*.html','!assets/**/*.json'])
     .pipe(gulpRev())
-    .pipe(gulp.dest('md5'))
+    .pipe(gulp.dest('assets'))
     .pipe(gulpRev.manifest())        //- 生成一个rev-manifest.json
-    .pipe(gulp.dest('view'));
+    .pipe(gulp.dest('assets'));
 });
 gulp.task('rev-collector',['rev'],function() {
-  return gulp.src(['view/rev-manifest.json','src/**/*.html'])
+  return gulp.src(['assets/rev-manifest.json','src/**/*.html'])
     .pipe(gulpRevCollector())
+    .pipe(gulp.dest('assets'));
+});
+gulp.task('inline-source',['rev-collector'],function() {
+  return gulp.src(['assets/**/*.html'])
+    .pipe(gulpInlineSource())
     .pipe(gulp.dest('view'));
 });
 
